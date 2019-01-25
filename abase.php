@@ -618,6 +618,11 @@ function bus311tabledisplay_function($pval,$incomingfromhandler,$content) {
 
 	$abase_conn = mysql_connect($sqlHost, $sqlUser, $sqlPass)	or die("<BR><font style='color: $error_color; background-color: white;'>".$GLOBALS['bus311mtd_page_shortcodes']."<B>Fatal Error</B>  (".__LINE__.") - Couldn't connect to MySQL server on '$sqlHost'.<BR><BR>This shortcode uses Database #$db_in. If this is correct, then see the <B>Warning</B> above. One or more of the following settings for Database #$db_in is probably not correct.<OL style='background-color: white;'><LI> Database host: '$sqlHost'.<LI> Database user: '$sqlUser'.<LI> Database user password: '$sqlPass'.</OL></font>.");
 
+	mysql_query ("SET CHARACTER SET 'utf8'", $abase_conn);
+	mysql_query ("set character_set_client='utf8'");
+	mysql_query ("set character_set_results='utf8'");
+	mysql_query ("set collation_connection='utf8_general_ci'");
+	mysql_query ("SET NAMES utf8");
 
 	$db = mysql_select_db($sqlDatabase, $abase_conn)
 		or die("<font style='color: $error_color; background-color: white;'>".$GLOBALS['bus311mtd_page_shortcodes']."<B>Fatal Error</B>  (".__LINE__.") - Couldn't select database '$sqlDatabase'.<BR>" . mysql_error() . "<BR><font style='color: $error_color; background-color: white;'><BR>This shortcode uses Database #$db_in. If this is correct, then one or more of the following settings for Database #$db_in is probably not correct.<OL style='background-color: white;'><LI> Database name: '$sqlDatabase'.<LI> Database '$sqlDatabase' must be accessible by user '$sqlUser'.</OL></font>");
